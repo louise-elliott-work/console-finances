@@ -86,3 +86,28 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+
+
+console.log("Financial Analysis");
+console.log("----------------");
+
+// Number of arrays within the array 'finances'
+console.log("Total Months: ");
+
+// Concatenation to join values from the array 'finances'
+
+// Sum of numbers within concatenated array
+
+console.log("Total: $");
+
+//Calculate total of all monthly changes
+
+//Total of monthly changes divided by total number of months for average
+
+console.log("Average Change: $");
+
+//Find highest and lowest numbers
+
+console.log("Greatest Increase in Profits/Losses: ");
+console.log("Greatest Decrease in Profits/Losses: ");
