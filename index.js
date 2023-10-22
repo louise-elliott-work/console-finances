@@ -93,7 +93,10 @@ console.log("Financial Analysis");
 console.log("----------------");
 
 // Number of arrays within the array 'finances'
-console.log("Total Months: ");
+function totalMonths(finances){
+  return finances.filter(n=>Array.isArray(n)).length;
+}
+console.log("Total Months: " + totalMonths(finances));
 
 // Concatenation to join values from the array 'finances'
 
