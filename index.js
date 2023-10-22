@@ -106,16 +106,46 @@ let sum = 0;
 for (let i = 1; i < concatArray.length; i+=2) {
   sum += concatArray[i];
 }
-
 console.log("Total: $" + sum);
 
+//concatenated array below to help with workings
+//console.log("concat array: " + concatArray);
+
+//Test for finding the difference between two values in js
+//var monthChange = concatArray[3] - concatArray[1];
+//console.log("example one month change: " + monthChange);
+
 //Calculate total of all monthly changes
+var allMonthlyChanges;
+for (var i = 1; i < (concatArray.length); i++) {
+  allMonthlyChanges = concatArray[i] - concatArray[i+=2];
+}
+console.log(allMonthlyChanges);
+//This is showing the last value of the loop, rather than creating a new array of all values.
+
 
 //Total of monthly changes divided by total number of months for average
+//Need to get the total changes in PL from month to month - use a number for now as an example
+//Answer should be -2315.12
+var monthlyPLs = 1000000;
 
-console.log("Average Change: $");
+var averagePL = (monthlyPLs / (totalMonths(finances)));
 
-//Find highest and lowest numbers
+console.log("Average Change: $" + averagePL.toFixed(2));
 
-console.log("Greatest Increase in Profits/Losses: ");
-console.log("Greatest Decrease in Profits/Losses: ");
+
+
+//Find highest and lowest numbers using these perhaps
+
+console.log("Greatest Increase in Profits/Losses: " + "($ )");
+
+function myArrayMax(arr) {
+  return Math.max.apply(null, arr);
+}
+
+console.log("Greatest Decrease in Profits/Losses: " + "($ )");
+
+function myArrayMin(arr) {
+  return Math.min.apply(null, arr);
+}
+
