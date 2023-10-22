@@ -99,10 +99,15 @@ function totalMonths(finances){
 console.log("Total Months: " + totalMonths(finances));
 
 // Concatenation to join values from the array 'finances'
+var concatArray = [].concat(...finances);
 
 // Sum of numbers within concatenated array
+let sum = 0;
+for (let i = 1; i < concatArray.length; i+=2) {
+  sum += concatArray[i];
+}
 
-console.log("Total: $");
+console.log("Total: $" + sum);
 
 //Calculate total of all monthly changes
 
