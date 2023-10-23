@@ -130,16 +130,13 @@ console.log("Total of all monthly changes: " + sumChanges);
 var averagePL = (sumChanges / (totalMonths(finances)-1));
 console.log("Average Change: $" + averagePL.toFixed(2));
 
+
+
+
 //Find highest and lowest numbers using these perhaps
 
-console.log("Greatest Increase in Profits/Losses: " + "($ )");
+var maxChange = Math.max(...allMonthlyChanges);
+console.log("Greatest Increase in Profits: ($" + maxChange + ")");
 
-function myArrayMax(arr) {
-  return Math.max.apply(null, arr);
-}
-
-console.log("Greatest Decrease in Profits/Losses: " + "($ )");
-
-function myArrayMin(arr) {
-  return Math.min.apply(null, arr);
-}
+var minChange = Math.min(...allMonthlyChanges);
+console.log("Greatest Decrease in Profits: ($" + minChange + ")");
