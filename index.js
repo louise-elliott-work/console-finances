@@ -108,26 +108,27 @@ for (let i = 1; i < concatArray.length; i+=2) {
 }
 console.log("Total: $" + sum);
 
-//concatenated array below to help with workings
-//console.log("concat array: " + concatArray);
+console.log("Test for finding the difference between two values in js here");
+var monthChange = concatArray[3] - concatArray[1];
+console.log("Example change between two months only: " + monthChange);
 
-//Test for finding the difference between two values in js
-//var monthChange = concatArray[3] - concatArray[1];
-//console.log("example one month change: " + monthChange);
-
-//Calculate total of all monthly changes
+console.log("Calculate total of all monthly changes to then be able to work out average");
 var allMonthlyChanges;
 for (var i = 1; i < (concatArray.length); i++) {
   allMonthlyChanges = concatArray[i] - concatArray[i+=2];
 }
-console.log(allMonthlyChanges);
-//This is showing the last value of the loop, rather than creating a new array of all values.
+console.log("Total of all monthly changes: " + allMonthlyChanges);
+console.log("TO FIX: This is showing the last value of the loop (the change between the last two months only), rather than creating a new array of all values.");
+
+console.log("Concatenated array below to help with workings");
+console.log("Concat array: " + concatArray);
+
 
 
 //Total of monthly changes divided by total number of months for average
 //Need to get the total changes in PL from month to month - use a number for now as an example
 //Answer should be -2315.12
-var monthlyPLs = 1000000;
+var monthlyPLs = 1000000; //Example only to check calculation
 
 var averagePL = (monthlyPLs / (totalMonths(finances)));
 
@@ -148,4 +149,3 @@ console.log("Greatest Decrease in Profits/Losses: " + "($ )");
 function myArrayMin(arr) {
   return Math.min.apply(null, arr);
 }
-
