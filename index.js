@@ -117,26 +117,41 @@ for (var i = 1; i < (concatArray.length-2); i+=2) {
   var change = concatArray[i+2] - concatArray[i];
   allMonthlyChanges.push(change);
 }
-//console.log("Monthly changes: " + allMonthlyChanges);
 
 //Sum of numbers within all MonthlyChanges array
 let sumChanges = 0;
 for (let i = 0; i < allMonthlyChanges.length; i++) {
   sumChanges += allMonthlyChanges[i];
 }
-console.log("Total of all monthly changes: " + sumChanges);
 
 //Total of monthly changes divided by total number of months (-1 as there are 86 months so 85 changes) for average
 var averagePL = (sumChanges / (totalMonths(finances)-1));
 console.log("Average Change: $" + averagePL.toFixed(2));
 
+//Find greatest increase and decrease and corresponding months
 
+var allMonthlyChanges2;
 
+var concatArrayS;
+var concatArrayS = concatArray.toString();
 
-//Find highest and lowest numbers using these perhaps
+var allMonthlyChanges2 = [];
+for (var i = 1; i < (concatArrayS.length); i++) {
+  var change = concatArrayS[i+2] - concatArrayS[i];
+  allMonthlyChanges2.push(change);
+}
 
+//New array  with month then figure minus last month's figure so months are kept for the greatest increase and greatest decrease calculations
+var allMonthlyChanges2 = [];
+for (var i = 1; i < (concatArray.length-2); i+=2) {
+  var change = concatArray[i+2] - concatArray[i];
+  allMonthlyChanges2.push(concatArray.at(i+1), change);
+}
+
+var maxMonth = (allMonthlyChanges2, maxChange) => allMonthlyChanges2[allMonthlyChanges2.indexOf(maxChange) - 1];
 var maxChange = Math.max(...allMonthlyChanges);
-console.log("Greatest Increase in Profits: ($" + maxChange + ")");
+console.log("Greatest Increase in Profits: " + (maxMonth(allMonthlyChanges2, maxChange)) + " " + "($" + maxChange + ")");
 
+var minMonth = (allMonthlyChanges2, minChange) => allMonthlyChanges2[allMonthlyChanges2.indexOf(minChange) - 1];
 var minChange = Math.min(...allMonthlyChanges);
-console.log("Greatest Decrease in Profits: ($" + minChange + ")");
+console.log("Greatest Decrease in Profits:  " + (minMonth(allMonthlyChanges2, minChange)) + " " + "($" + minChange + ")");
