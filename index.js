@@ -102,39 +102,33 @@ console.log("Total Months: " + totalMonths(finances));
 var concatArray = [].concat(...finances);
 
 // Sum of numbers within concatenated array
-let sum = 0;
+let sumTotal = 0;
 for (let i = 1; i < concatArray.length; i+=2) {
-  sum += concatArray[i];
+  sumTotal += concatArray[i];
 }
-console.log("Total: $" + sum);
+console.log("Total: $" + sumTotal);
 
-console.log("Test for finding the difference between two values in js here");
-var monthChange = concatArray[3] - concatArray[1];
-console.log("Example change between two months only: " + monthChange);
+//console.log("Concatenated array below to help with workings");
+//console.log("Concat array: " + concatArray);
 
-console.log("Calculate total of all monthly changes to then be able to work out average");
-var allMonthlyChanges;
-for (var i = 1; i < (concatArray.length); i++) {
-  allMonthlyChanges = concatArray[i] - concatArray[i+=2];
+//console.log("Calculate total of all monthly changes to then be able to work out average");
+var allMonthlyChanges = [];
+for (var i = 1; i < (concatArray.length-2); i+=2) {
+  var change = concatArray[i+2] - concatArray[i];
+  allMonthlyChanges.push(change);
 }
-console.log("Total of all monthly changes: " + allMonthlyChanges);
-console.log("TO FIX: This is showing the last value of the loop (the change between the last two months only), rather than creating a new array of all values.");
+//console.log("Monthly changes: " + allMonthlyChanges);
 
-console.log("Concatenated array below to help with workings");
-console.log("Concat array: " + concatArray);
+//Sum of numbers within all MonthlyChanges array
+let sumChanges = 0;
+for (let i = 0; i < allMonthlyChanges.length; i++) {
+  sumChanges += allMonthlyChanges[i];
+}
+console.log("Total of all monthly changes: " + sumChanges);
 
-
-
-//Total of monthly changes divided by total number of months for average
-//Need to get the total changes in PL from month to month - use a number for now as an example
-//Answer should be -2315.12
-var monthlyPLs = 1000000; //Example only to check calculation
-
-var averagePL = (monthlyPLs / (totalMonths(finances)));
-
+//Total of monthly changes divided by total number of months (-1 as there are 86 months so 85 changes) for average
+var averagePL = (sumChanges / (totalMonths(finances)-1));
 console.log("Average Change: $" + averagePL.toFixed(2));
-
-
 
 //Find highest and lowest numbers using these perhaps
 
