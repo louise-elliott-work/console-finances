@@ -1,3 +1,4 @@
+// Data provided for financial analysis
 var finances = [
   ['Jan-2010', 867884],
   ['Feb-2010', 984655],
@@ -87,71 +88,58 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-
-
+// Headings
 console.log("Financial Analysis");
 console.log("----------------");
 
-// Number of arrays within the array 'finances'
+// Number of arrays within the array 'finances' to give the total number of months included in the dataset.
 function totalMonths(finances){
   return finances.filter(n=>Array.isArray(n)).length;
 }
 console.log("Total Months: " + totalMonths(finances));
 
-// Concatenation to join values from the array 'finances'
-var concatArray = [].concat(...finances);
+// Concatenation to join the values from the array 'finances'.
+var concatFinances = [].concat(...finances);
 
-// Sum of numbers within concatenated array
-let sumTotal = 0;
-for (let i = 1; i < concatArray.length; i+=2) {
-  sumTotal += concatArray[i];
+// Sum of numbers within concatenated array to give the net total amount of Profit/Losses over the entire period.
+let totalProfitLoss = 0;
+for (let i = 1; i < concatFinances.length; i+=2) {
+  totalProfitLoss += concatFinances[i];
 }
-console.log("Total: $" + sumTotal);
+console.log("Total: $" + totalProfitLoss);
 
-//console.log("Concatenated array below to help with workings");
-//console.log("Concat array: " + concatArray);
-
-//console.log("Calculate total of all monthly changes to then be able to work out average");
-var allMonthlyChanges = [];
-for (var i = 1; i < (concatArray.length-2); i+=2) {
-  var change = concatArray[i+2] - concatArray[i];
-  allMonthlyChanges.push(change);
+//Create new array for alternate values (so profit/loss only).
+var changesMonthToMonth = [];
+for (var i = 1; i < (concatFinances.length-2); i+=2) {
+  var change = concatFinances[i+2] - concatFinances[i];
+  changesMonthToMonth.push(change);
 }
 
-//Sum of numbers within all MonthlyChanges array
-let sumChanges = 0;
-for (let i = 0; i < allMonthlyChanges.length; i++) {
-  sumChanges += allMonthlyChanges[i];
+//Sum of alternate values to give the total change in profit/loss from month to month.
+let totalChangesMonthToMonth = 0;
+for (let i = 0; i < changesMonthToMonth.length; i++) {
+  totalChangesMonthToMonth += changesMonthToMonth[i];
 }
 
-//Total of monthly changes divided by total number of months (-1 as there are 86 months so 85 changes) for average
-var averagePL = (sumChanges / (totalMonths(finances)-1));
+//Total of monthly change in profit/loss from month to month divided by total number of months (-1 as there are 86 months so 85 changes) to give the average profit/loss over the entire period.
+var averagePL = (totalChangesMonthToMonth / (totalMonths(finances)-1));
 console.log("Average Change: $" + averagePL.toFixed(2));
 
-//Find greatest increase and decrease and corresponding months
-
-var allMonthlyChanges2;
-
-var concatArrayS;
-var concatArrayS = concatArray.toString();
-
-var allMonthlyChanges2 = [];
-for (var i = 1; i < (concatArrayS.length); i++) {
-  var change = concatArrayS[i+2] - concatArrayS[i];
-  allMonthlyChanges2.push(change);
-}
-
 //New array  with month then figure minus last month's figure so months are kept for the greatest increase and greatest decrease calculations
-var allMonthlyChanges2 = [];
-for (var i = 1; i < (concatArray.length-2); i+=2) {
-  var change = concatArray[i+2] - concatArray[i];
-  allMonthlyChanges2.push(concatArray.at(i+1), change);
+var changesDatesMonthToMonth = [];
+for (var i = 1; i < (concatFinances.length-2); i+=2) {
+  var change = concatFinances[i+2] - concatFinances[i];
+  changesDatesMonthToMonth.push(concatFinances.at(i+1), change);
 }
 
-var maxMonth = (allMonthlyChanges2, maxChange) => allMonthlyChanges2[allMonthlyChanges2.indexOf(maxChange) - 1];
-var maxChange = Math.max(...allMonthlyChanges);
-console.log("Greatest Increase in Profits: " + (maxMonth(allMonthlyChanges2, maxChange)) + " " + "($" + maxChange + ")");
+//Identify the highest number (profit/loss) and preceeding value (date) to show the greatest increase in profit/loss (date and amount) over the entire period.
 
-var minMonth = (allMonthlyChanges2, minChange) => allMonthlyChanges2[allMonthlyChanges2.indexOf(minChange) - 1];
-var minChange = Math.min(...allMonthlyChanges);
-console.log("Greatest Decrease in Profits:  " + (minMonth(allMonthlyChanges2, minChange)) + " " + "($" + minChange + ")");
+var maxPLMonth = (changesDatesMonthToMonth, maxProfitLoss) => changesDatesMonthToMonth[changesDatesMonthToMonth.indexOf(maxProfitLoss) - 1];
+var maxProfitLoss = Math.max(...changesMonthToMonth);
+console.log("Greatest Increase in Profits: " + (maxPLMonth(changesDatesMonthToMonth, maxProfitLoss)) + " " + "($" + maxProfitLoss + ")");
+
+//Identify the lowest number (profit/loss) and preceeding value (date) to show the greatest decrease in profit/loss (date and amount) over the entire period.
+
+var minPLMonth = (changesDatesMonthToMonth, minProfitLoss) => changesDatesMonthToMonth[changesDatesMonthToMonth.indexOf(minProfitLoss) - 1];
+var minProfitLoss = Math.min(...changesMonthToMonth);
+console.log("Greatest Decrease in Profits:  " + (minPLMonth(changesDatesMonthToMonth, minProfitLoss)) + " " + "($" + minProfitLoss + ")");
